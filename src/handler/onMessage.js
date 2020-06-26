@@ -6,8 +6,8 @@ const getWeatcher = require("../tool/weather")
 
 module.exports = bot => {
     return async function onMessage(msg) {
-        // 判断消息来自自己，直接return
-        if (msg.self()) return
+        // 判断消息来自自己或三分钟前的消息，直接return
+        if (msg.self() || msg.age() > 180) return
 
         logMSG(msg)
 

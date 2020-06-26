@@ -4,10 +4,6 @@ const {
     log,
 } = require('wechaty')
 
-// module.exports = function onScan(qrcode, status) {
-//   Qrterminal.generate(qrcode, { small: true })
-// }
-
 module.exports = function onScan(qrcode, status) {
 
     Qrterminal.generate(qrcode, { small: true })  // show qrcode on console

@@ -15,12 +15,19 @@ module.exports = (info) => {
         let lifeUrl = `https://free-api.heweather.net/s6/weather/lifestyle?location=${urlencode(city)}&key=${config.weatherKey}`
 
         const responseBase = await fetch(baseUrl);
-        const resBase = await responseBase.json();
+        let resBase = await responseBase.json();
+        resBase = resBase.HeWeather6[0];
 
         const responseLife = await fetch(lifeUrl);
-        const resLife = await responseLife.json();
+        let resLife = await responseLife.json();
+        resLife = resLife.HeWeather6[0];
 
-        resolve(showWeather(resBase.HeWeather6[0], resLife.HeWeather6[0]))
+        if (resBase.status === "ok" && resLife.status === "ok") {
+            resolve(showWeather(resBase, resLife))
+        }
+        else {
+            resolve("base:" + resBase.status + "\n" + "life:" + resLife.status)
+        }
     })
 }
 
