@@ -1,0 +1,28 @@
+{
+  "name": "tomchat",
+  "version": "0.0.1",
+  "description": "A chatbot by wechaty.",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node ./src/bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zophyr/TomChat.git"
+  },
+  "keywords": [
+    "chatbot",
+    "wechaty"
+  ],
+  "author": "Zephyr",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Zophyr/TomChat/issues"
+  },
+  "homepage": "https://github.com/Zophyr/TomChat#readme",
+  "dependencies": {
+    "qrcode-terminal": "^0.12.0",
+    "wechaty": "^0.40.10",
+    "wechaty-puppet-padplus": "^0.6.3"
+  }
+}
