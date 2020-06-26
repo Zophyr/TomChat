@@ -32,7 +32,7 @@ module.exports = (info) => {
 }
 
 function showWeather(resBase, resLife) {
-    let basic = "📍" + resBase.basic.location + "当前气温 " + resBase.now.tmp + "°C，天气" + resBase.now.cond_txt
+    let basic = "📍" + resBase.basic.location + "当前气温 " + resBase.now.tmp + "°C，" + resBase.now.cond_txt
     let advice = "🍄体感：" + resLife.lifestyle.find(element => element.type == "comf").txt
     let wear = "👘穿衣：" + resLife.lifestyle.find(element => element.type == "drsg").txt
     let sport = "🏃‍运动：" + resLife.lifestyle.find(element => element.type == "sport").brf + "运动" + "，" + resLife.lifestyle.find(element => element.type == "sport").txt
