@@ -1,14 +1,15 @@
 const { Message } = require("wechaty");
-const { FileBox } = require("file-box");
 
+const config = require("../../config/config");
 const logMSG = require("../tool/log");
 const getWeatcher = require("../tool/weather");
 const getAnswer = require("../tool/autoChat");
+const forTomato = require("../tool/tomato");
 
 module.exports = bot => {
     return async function onMessage(msg) {
         // 判断消息来自自己或三分钟前的消息，直接return
-        if (msg.self() || msg.age() > 180) return
+        // if (msg.self() || msg.age() > 180) return
 
         logMSG(msg)
 
@@ -16,18 +17,9 @@ module.exports = bot => {
             if (msg.text() === "测试") {
                 await msg.say("Test is OK!")
             }
-            else if (msg.text() === "二呆") {
-                const daiPhoto = FileBox.fromFile('img/daidai.jpeg')
-                await msg.say(daiPhoto)
-            }
-            else if (msg.text() === "你好" && msg.from().id === "wxid_69pagw415kvj22") {
-                await msg.say("你好呀，二呆姐姐 （*＾3＾）")
-            }
-            else if (msg.text() === "哈喽" && msg.from().id === "wxid_69pagw415kvj22") {
-                await msg.say("二呆姐姐你好 o(｀ω´ )o")
-            }
-            else if (msg.text() === "hello" && msg.from().id === "wxid_69pagw415kvj22") {
-                await msg.say("nice to meet u, Erdai sister （≧∇≦）")
+            else if (msg.from().id === config.tomato) {
+                let rp = await forTomato(msg);
+                await msg.say(rp);
             }
             else if (/.*天气$/.test(msg.text())) {
                 let rp = await getWeatcher(msg.text())
