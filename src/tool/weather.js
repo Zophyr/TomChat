@@ -1,5 +1,3 @@
-// node-request请求模块包
-const request = require("request")
 // 请求参数解码
 const urlencode = require("urlencode")
 
