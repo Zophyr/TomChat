@@ -10,7 +10,7 @@ const getHistory = require("../tool/historyToday");
 module.exports = (bot) => {
   return async function onMessage(msg) {
     // 判断消息来自自己或三分钟前的消息，直接return
-    // if (msg.self() || msg.age() > 180) return
+    if (msg.self() || msg.age() > 180) return
 
     logMSG(msg);
 
