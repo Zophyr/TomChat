@@ -1,4 +1,4 @@
-const { Message } = require("wechaty");
+const { Wechaty, Message } = require("wechaty");
 
 const config = require("../../config/config");
 const logMSG = require("../tool/log");
@@ -6,11 +6,12 @@ const getWeatcher = require("../tool/weather");
 const getAnswer = require("../tool/autoChat");
 const forTomato = require("../tool/tomato");
 const getHistory = require("../tool/historyToday");
+const getAllRoom = require("../tool/getAllRoom");
 
 module.exports = (bot) => {
   return async function onMessage(msg) {
     // 判断消息来自自己或三分钟前的消息，直接return
-    if (msg.self() || msg.age() > 180) return
+    if (msg.self() || msg.age() > 180) return;
 
     logMSG(msg);
 
@@ -18,6 +19,8 @@ module.exports = (bot) => {
       if (msg.text() === "nasa") {
         let rp = await getHistory(msg, 3);
         await msg.say(rp);
+      } else if (msg.text() === "room") {
+        getAllRoom(bot);
       } else if (msg.from().id === config.tomato) {
         let rp = await forTomato(msg);
         await msg.say(rp);

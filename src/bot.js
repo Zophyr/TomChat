@@ -8,7 +8,7 @@ const config = require("../config/config");
 
 const onScan = require("./handler/onScan"); // 扫描二维码监听回调
 const onMessage = require("./handler/onMessage"); // 消息监听回调
-const { onReady } = require("./handler/onReady");
+const onReady = require("./handler/onReady");
 const { initDB } = require("./tool/initDB");
 
 // 初始化
@@ -19,7 +19,7 @@ const bot = new Wechaty({
   name: config.name,
 });
 
-bot.use(onReady());
+// bot.use(onReady());
 
 bot
   .on("scan", onScan) // 机器人需要扫描二维码时监听
@@ -28,4 +28,5 @@ bot
     await initDB();
   })
   .on("message", onMessage(bot)) // 消息监听
+  .on("ready", onReady(bot))
   .start();
