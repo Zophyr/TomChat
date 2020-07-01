@@ -9,7 +9,7 @@ const config = require("../config/config");
 const onScan = require("./handler/onScan"); // 扫描二维码监听回调
 const onMessage = require("./handler/onMessage"); // 消息监听回调
 const onReady = require("./handler/onReady");
-const { initDB } = require("./tool/initDB");
+// const { initDB } = require("./tool/initDB");
 
 // 初始化
 const bot = new Wechaty({
@@ -25,7 +25,7 @@ bot
   .on("scan", onScan) // 机器人需要扫描二维码时监听
   .on("login", async (user) => {
     console.log(`User ${user} logined`);
-    await initDB();
+    // await initDB();
   })
   .on("message", onMessage(bot)) // 消息监听
   .on("ready", onReady(bot))
