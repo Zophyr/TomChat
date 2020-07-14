@@ -10,11 +10,13 @@ const getAllRoom = require("../tool/getAllRoom");
 
 module.exports = (bot) => {
   return async function onMessage(msg) {
+    // return;
     // 判断消息来自自己或三分钟前的消息，直接return
     if (msg.self() || msg.age() > 180) return;
 
     logMSG(msg);
-
+    return;
+    
     if (msg.type() == Message.Type.Text) {
       if (msg.text() === "nasa") {
         let rp = await getHistory(msg, 3);
@@ -28,8 +30,9 @@ module.exports = (bot) => {
         let rp = await getWeatcher(msg.text());
         await msg.say(rp);
       } else {
-        let rp = await getAnswer(msg);
-        await msg.say(rp);
+        // let rp = await getAnswer(msg);
+        // await msg.say(rp);
+        return;
       }
     } else {
       await msg.say("目前只看得懂文字啦 ♪(´ε｀ )");

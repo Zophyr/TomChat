@@ -11,6 +11,19 @@ const onMessage = require("./handler/onMessage"); // 消息监听回调
 const onReady = require("./handler/onReady");
 // const { initDB } = require("./tool/initDB");
 
+const { WechatyVorpal } = require('wechaty-vorpal');
+const { MathMaster } = require('wechaty-vorpal-contrib');
+
+const vorpalExtensionList = [
+  MathMaster(), // <- Put our vorpal contrib extensions at here.
+];
+
+const VorpalPlugin = WechatyVorpal({
+  room: '20061990628@chatroom',
+  use: vorpalExtensionList,
+  mention: true
+});
+
 // 初始化
 const bot = new Wechaty({
   puppet: new PuppetPadplus({
@@ -19,6 +32,7 @@ const bot = new Wechaty({
   name: config.name,
 });
 
+bot.use(VorpalPlugin);
 // bot.use(onReady());
 
 bot
