@@ -31,6 +31,8 @@
     "sqlite3": "^4.2.0",
     "urlencode": "^1.1.0",
     "wechaty": "^0.40.10",
-    "wechaty-puppet-padplus": "^0.6.3"
+    "wechaty-puppet-padplus": "^0.6.3",
+    "wechaty-vorpal": "^0.6.5",
+    "wechaty-vorpal-contrib": "^0.6.6"
   }
 }
